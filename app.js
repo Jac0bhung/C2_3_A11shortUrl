@@ -37,16 +37,6 @@ app.get("/", (req, res) => {
   // res.send("hello world_shortUrl");
   res.render("index");
 });
-//原始
-// app.post("/", (req, res) => {
-//   console.log("random url is: ", generateShortUrl(req.body));
-//   res.render("index");
-// });
-
-// // 設定 port 3000
-// app.listen(3000, () => {
-//   console.log("App is running on http://localhost:3000");
-// });
 
 //參考
 //輸入網址轉換成短網址
@@ -76,29 +66,29 @@ app.post("/", (req, res) => {
     });
 });
 //透過短網址轉址到原本網址
-app.get("/:short_url", (req, res) => {
-  const { short_url } = req.params;
-  Url.findOne({ short_url }).then((data) => {
-    res.redirect(data.original_url);
-  });
-});
-
 // app.get("/:short_url", (req, res) => {
 //   const { short_url } = req.params;
-
-//   Url.findOne({ short_url })
-//     .then((data) => {
-//       if (!data) {
-//         return res.render("error", {
-//           errorMsg: "Can't found the URL",
-//           errorURL: req.headers.host + "/" + short_url,
-//         });
-//       }
-
-//       res.redirect(data.original_url);
-//     })
-//     .catch((error) => console.error(error));
+//   Url.findOne({ short_url }).then((data) => {
+//     res.redirect(data.original_url);
+//   });
 // });
+
+app.get("/:short_url", (req, res) => {
+  const { short_url } = req.params;
+
+  Url.findOne({ short_url: short_url })
+    .then((data) => {
+      // if (!data) {
+      //   return res.render("error", {
+      //     errorMsg: "Can't found the URL",
+      //     errorURL: req.headers.host + "/" + short_url,
+      //   });
+      // }
+
+      res.redirect(data.original_url);
+    })
+    .catch((error) => console.error(error));
+});
 // start and listen on the Express server
 app.listen(3000, () => {
   console.log("App is running on http://localhost:3000");
