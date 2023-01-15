@@ -1,0 +1,14 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "original_url": "http://www.google.com/",
+      "short_url": "g0gle"
+    },
+    {
+      "id": 2,
+      "original_url": "https://www.apple.com/",
+      "short_url": "apple"
+    }
+  ]
+}
